@@ -1,0 +1,1052 @@
+﻿[
+    {
+        "paragraph":  35,
+        "before":  "Người sử dụng dịch vụ xem phim của rạp, có thể có tài khoản (đã đăng kí thành viên) hoặc chưa có tài khoản (khách vãng lai). Khách hàng có thể đăng kí thành viên để hưởng ưu đãi, tìm kiếm thông tin phim/lịch chiếu, mua vé trực tuyến qua hệ thống hoặc mua vé trực tiếp tại quầy thông qua nhân viên bán hàng. Ví dụ: khách hàng A vào ứng dụng, tìm phim \"Avengers\", chọn suất chiếu 20h, chọn ghế E5, nhập mã thẻ thành viên để được giảm giá rồi thanh toán trực tuyến.",
+        "after":  "Người sử dụng dịch vụ xem phim, có thể có hoặc chưa có tài khoản. Khách được xem danh sách phim và lịch chiếu trước khi đăng nhập; luồng mua thông thường yêu cầu đăng nhập sau khi xác nhận suất nếu chưa có phiên. Một lần mua có thể chọn nhiều ghế trong cùng suất. Mã thành viên, ưu đãi và gửi vé qua email vẫn là yêu cầu cần hoàn thiện."
+    },
+    {
+        "paragraph":  38,
+        "before":  "Đăng kí",
+        "after":  "Đăng nhập"
+    },
+    {
+        "paragraph":  40,
+        "before":  "Là hoạt động xác thực tài khoản trước khi sử dụng hệ thống, áp dụng cho cả 3 tác nhân: nhân viên quản lí, nhân viên bán hàng và khách hàng. Người dùng nhập tên đăng nhập và mật khẩu; hệ thống kiểm tra thông tin, nếu đúng sẽ cho phép truy cập vào các chức năng tương ứng với vai trò (quyền) của tài khoản đó, nếu sai sẽ báo lỗi và yêu cầu nhập lại.",
+        "after":  "Là hoạt động xác thực tài khoản cho các tác nhân. Người dùng nhập tài khoản và mật khẩu, hệ thống kiểm tra và chuyển tới chức năng theo vai trò nếu hợp lệ, báo lỗi nếu không hợp lệ. Khách chưa đăng nhập vẫn có thể xem phim và suất; luồng mua thông thường yêu cầu đăng nhập khi xác nhận suất. Phân quyền URL phía máy chủ là giới hạn cần hoàn thiện của demo."
+    },
+    {
+        "paragraph":  54,
+        "before":  "Là nhóm chức năng của nhân viên quản lí gồm 3 thao tác: thêm (nhập thông tin phim mới như tên, thể loại, thời lượng, đạo diễn, diễn viên, poster... rồi lưu vào hệ thống), sửa (cập nhật lại thông tin phim đã tồn tại khi có thay đổi), xóa (gỡ bỏ phim khỏi hệ thống khi không còn chiếu nữa). Ví dụ: chọn menu \"Quản lí thông tin phim\" → chọn \"Thêm thông tin phim\" → nhập tên phim, thể loại, thời lượng → nhấn nút \"Thêm\" → hệ thống báo \"Thêm thành công\".",
+        "after":  "Nhóm chức năng của quản lý gồm thêm, sửa và xóa phim. Bản demo lưu tên, thể loại, thời lượng theo phút, đạo diễn, diễn viên và mô tả. Luồng thêm: mở danh sách → Thêm thông tin phim → nhập dữ liệu → Xác nhận → kiểm tra/lưu → trở về danh sách có thông báo thành công. Poster chưa được triển khai."
+    },
+    {
+        "paragraph":  79,
+        "before":  "Là hoạt động của khách hàng tự thực hiện việc đặt và thanh toán vé thông qua hệ thống mà không cần đến quầy. Quy trình: chọn menu \"Mua vé\" → chọn phim từ danh sách → chọn giờ xem → chọn ghế → nhập mã thẻ khách hàng thân thiết (nếu có) và xác nhận mua vé → thanh toán → hệ thống in vé điện tử và hóa đơn. Ví dụ: khách hàng đặt 2 ghế D3, D4 cho suất 20h phim \"Inside Out 2\", nhập mã thẻ thành viên để được giảm 10%, thanh toán qua ví điện tử, nhận vé điện tử gửi qua email.",
+        "after":  "Là hoạt động khách hàng tự chọn phim, ngày, suất và một hoặc nhiều ghế để mua chung một hóa đơn. Bản demo kiểm tra và giữ toàn bộ ghế sau khi khách nhấn Xác nhận, sau đó thực hiện thanh toán mô phỏng và hiển thị kết quả để xem/in. Yêu cầu nhập mã thành viên, áp dụng ưu đãi và gửi vé qua email chưa được triển khai."
+    },
+    {
+        "paragraph":  84,
+        "before":  "Là đối tượng trung tâm của hệ thống, đại diện cho một bộ phim được rạp đưa vào chiếu. Thông tin phim gồm: mã phim, tên phim, thể loại, thời lượng, đạo diễn, diễn viên, mô tả nội dung, poster, ngày khởi chiếu. Một phim có thể được xếp vào nhiều suất chiếu khác nhau (nhiều lịch chiếu). Ví dụ: phim \"Lật Mặt 8\" thể loại hành động, thời lượng 120 phút, được xếp chiếu ở cả Phòng 1 lúc 14h và Phòng 3 lúc 19h trong cùng một ngày.",
+        "after":  "Đại diện cho một phim được quản lý trong hệ thống. Bản triển khai có id, nameMovies, type, duration, director, cast, descriptions; một phim có thể có nhiều suất chiếu. Poster, năm sản xuất và ngày khởi chiếu chưa có trong form, model và bảng phim của demo."
+    },
+    {
+        "paragraph":  97,
+        "before":  "Là đối tượng đại diện cho một vị trí ngồi trong phòng chiếu, gồm: mã ghế (ví dụ A1, B5), loại ghế (thường, VIP, đôi), trạng thái (trống/đã đặt) theo từng suất chiếu cụ thể. Một ghế trong một suất chiếu chỉ có thể được bán cho một khách hàng duy nhất, tránh trùng ghế.",
+        "after":  "Đại diện cho một vị trí ngồi trong phòng chiếu, gồm id, numSeats, seatCode, typeSeat và screenRoom. Trạng thái khả dụng được quản lý tại Ticket1 theo từng suất chiếu, không phải trạng thái cố định của Seat1. Một ghế trong một suất chỉ được bán cho một giao dịch thành công."
+    },
+    {
+        "paragraph":  101,
+        "before":  "Là đối tượng chứng nhận quyền vào xem phim của khách hàng đối với một suất chiếu và một ghế cụ thể, gồm: mã vé, suất chiếu, ghế, giá vé, thời điểm mua. Vé được sinh ra sau khi khách hàng hoàn tất thanh toán, có thể mua trực tuyến hoặc tại quầy.",
+        "after":  "Liên kết một ghế với một suất chiếu, gồm id, priceTicket, status, seat, showtime và bill. Các bản ghi vé được chuẩn bị trước để hiển thị sơ đồ ghế; khi mua thành công, vé được chuyển sang Đã bán và gắn với hóa đơn. Bản demo không tạo mới bản ghi vé ở bước thanh toán mà chốt các vé đã chọn."
+    },
+    {
+        "paragraph":  104,
+        "before":  "Report",
+        "after":  "Invoice / Bill"
+    },
+    {
+        "paragraph":  109,
+        "before":  "Là đối tượng ghi nhận tư cách thành viên của khách hàng đối với rạp, gồm: mã thẻ, thông tin khách hàng liên kết, điểm tích lũy, hạng thành viên (nếu có). Thẻ thành viên được dùng để nhập mã khi mua vé (trực tuyến hoặc tại quầy) nhằm được hưởng ưu đãi giảm giá hoặc tích điểm.",
+        "after":  "Thông tin thành viên được lưu qua memberCode và points trong Customers1 và tblCustomers1, chưa có lớp hoặc bảng thẻ riêng. Nhập/xác thực mã khi mua vé, áp dụng ưu đãi và tích điểm sau giao dịch là các yêu cầu chưa hoàn thiện."
+    },
+    {
+        "paragraph":  127,
+        "before":  "Thêm phim: chọn menu \"Quản lí thông tin phim\" → chọn chức năng \"Thêm thông tin phim\" → nhập thông tin phim (tên, thể loại, thời lượng, đạo diễn, diễn viên, poster...) → nhấn \"Thêm\" → hệ thống kiểm tra và lưu dữ liệu → báo thành công.",
+        "after":  "Thêm phim: quản lý mở danh sách phim, chọn Thêm thông tin phim, nhập tên, thể loại, thời lượng theo phút, đạo diễn, diễn viên và mô tả rồi nhấn Xác nhận. Hệ thống kiểm tra dữ liệu và trùng tên, lưu phim rồi trở về danh sách kèm thông báo thành công."
+    },
+    {
+        "paragraph":  135,
+        "before":  "i) Mua vé trực tuyến (Khách hàng)Khách hàng chọn menu \"Mua vé\" → chọn phim từ danh sách → chọn giờ xem → chọn ghế → nhập mã thẻ khách hàng thân thiết (nếu có) và xác nhận mua vé → thanh toán → hệ thống in vé và hóa đơn (dưới dạng điện tử, gửi cho khách hàng).",
+        "after":  "i) Mua vé trực tuyến: mở trang chủ → chọn phim, ngày và giờ → nhấn Đồng ý để xem thông tin suất → xác nhận suất và đăng nhập nếu cần → chọn một hoặc nhiều ghế → Xác nhận để giữ toàn bộ ghế tối đa 5 phút → xem tổng tiền, chọn phương thức và Thanh toán → ghi một hóa đơn và bán toàn bộ vé trong cùng giao dịch mô phỏng → xem/in vé, hóa đơn. Chưa nhập mã thành viên, chưa giảm giá hoặc gửi email."
+    },
+    {
+        "paragraph":  145,
+        "before":  "Mã KH, họ tên, tài khoản, mật khẩu, số điện thoại, email, ngày đăng kí",
+        "after":  "id, fullName, username, password, phoneNumbers, email, memberCode, points và dsBill."
+    },
+    {
+        "paragraph":  147,
+        "before":  "Mã phim, tên phim, thể loại, thời lượng, đạo diễn, diễn viên, mô tả, poster, ngày khởi chiếu",
+        "after":  "id, nameMovies, type, duration (số phút nguyên dương), director, cast, descriptions."
+    },
+    {
+        "paragraph":  149,
+        "before":  "Mã phòng, tên phòng, sức chứa, loại phòng (2D/3D/IMAX), sơ đồ ghế, trạng thái hoạt động",
+        "after":  "id, nameScreen, seatNums, description, cinema, dsSeat và dsShowtime."
+    },
+    {
+        "paragraph":  151,
+        "before":  "Mã suất chiếu, ngày chiếu, giờ bắt đầu, giờ kết thúc, giá vé áp dụng",
+        "after":  "id, dateShow, hoursShow, priceTicket, movie, room và dsTicket."
+    },
+    {
+        "paragraph":  153,
+        "before":  "Mã ghế, loại ghế (thường/VIP/đôi), trạng thái (trống/đã đặt)",
+        "after":  "id, numSeats, seatCode, typeSeat, screenRoom; trạng thái ghế theo suất nằm tại Ticket1."
+    },
+    {
+        "paragraph":  155,
+        "before":  "Mã vé, giá vé, thời điểm mua, hình thức mua (trực tuyến/tại quầy)",
+        "after":  "id, priceTicket, status, showtime, seat, bill. Chủ phiên và hạn giữ được lưu thêm ở bảng tblTicket1."
+    },
+    {
+        "paragraph":  157,
+        "before":  "Mã hóa đơn, tổng tiền, hình thức thanh toán, ngày lập",
+        "after":  "id, dateTime, totalAmount, paymentMethod, discount, customer, salePerson và dsTicket; salePerson có thể không có khi mua trực tuyến."
+    },
+    {
+        "paragraph":  159,
+        "before":  "Mã thẻ, điểm tích lũy, hạng thành viên, ngày cấp",
+        "after":  "memberCode và points được lưu cùng khách hàng; chưa triển khai hạng thành viên và ngày cấp."
+    },
+    {
+        "paragraph":  169,
+        "before":  "Khách hàng – Vé: một khách hàng có thể mua nhiều vé (qua nhiều lần); mỗi vé thuộc về một khách hàng. (1 – nhiều) ",
+        "after":  "Khách hàng – Vé: khách hàng có thể mua nhiều vé; bản triển khai liên kết khách hàng với vé gián tiếp qua hóa đơn, không có customer trực tiếp trong Ticket1."
+    },
+    {
+        "paragraph":  171,
+        "before":  "Hóa đơn – Vé: một hóa đơn có thể gồm nhiều vé (nếu khách mua nhiều vé trong 1 lần); mỗi vé chỉ thuộc về một hóa đơn. (1 – nhiều) ",
+        "after":  "Hóa đơn – Vé: một hóa đơn mua thành công gồm một hoặc nhiều vé; mỗi vé thuộc tối đa một hóa đơn. Vé trống/đang giữ chưa gắn hóa đơn. Đây là quan hệ một–nhiều."
+    },
+    {
+        "paragraph":  172,
+        "before":  "Khách hàng – Thẻ thành viên: một khách hàng sở hữu tối đa một thẻ thành viên; một thẻ thành viên chỉ thuộc về một khách hàng. (1 – 1) ",
+        "after":  "Thông tin thành viên là thuộc tính memberCode và points của khách hàng trong bản triển khai, chưa có thực thể thẻ riêng để biểu diễn quan hệ một–một."
+    },
+    {
+        "paragraph":  185,
+        "before":  "Cho phép khách hàng mua vé xem phim trực tuyến bằng cách chọn phim, suất chiếu và vị trí ghế. Sau khi thanh toán thành công, hệ thống xác nhận giao dịch và cung cấp thông tin vé cho khách hàng.",
+        "after":  "Khách hàng chọn phim, suất và nhiều ghế trong cùng lượt mua. Sau khi xác nhận, hệ thống giữ toàn bộ ghế và thực hiện thanh toán mô phỏng; thành công thì tạo một hóa đơn, chốt toàn bộ vé và cung cấp trang xem/in kết quả."
+    },
+    {
+        "paragraph":  231,
+        "before":  "- 4a. Dữ liệu không hợp lệ (qua Validate Movie Data1): Hệ thống trả về lỗi, highlight các trường nhập sai và yêu cầu nhập lại.",
+        "after":  "- 4a. Dữ liệu không hợp lệ: nếu tên phim trống hoặc thời lượng không phải số nguyên dương, hệ thống mở lại form và báo lỗi chung để quản lý nhập lại. Chưa highlight riêng từng trường hoặc giữ lại dữ liệu sau redirect."
+    },
+    {
+        "paragraph":  232,
+        "before":  "- 5a. Trùng lặp dữ liệu: Phim đã tồn tại trong hệ thống, hệ thống hiển thị cảnh báo và hủy thao tác.",
+        "after":  "- 5a. Trùng tên phim: hệ thống cảnh báo và không thêm bản ghi mới. Hạn chế hiện tại: lỗi DB cũng có thể bị hiển thị cùng thông báo trùng tên vì hàm lưu chỉ trả false."
+    },
+    {
+        "paragraph":  245,
+        "before":  "Hệ thống đang hoạt động; khách hàng có tài khoản và đăng nhập thành công",
+        "after":  "Hệ thống và DB hoạt động; phim, lịch chiếu và sơ đồ ghế đã được cấu hình. Khách có thể xem phim/suất trước khi đăng nhập; luồng thông thường yêu cầu đăng nhập sau khi xác nhận suất nếu chưa có phiên."
+    },
+    {
+        "paragraph":  247,
+        "before":  "Hệ thống đang hoạt động; khách hàng có tài khoản và đăng nhập thành công",
+        "after":  "Khi thành công, một hóa đơn được ghi nhận, toàn bộ vé đã chọn chuyển sang Đã bán và gắn hóa đơn; khách xem/in được kết quả. Giao dịch lỗi không chốt bán một phần danh sách vé."
+    },
+    {
+        "paragraph":  249,
+        "before":  "1. Khách hàng chọn chức năng Buy Ticket Online.",
+        "after":  "1. Khách hàng truy cập trang chủ để mua vé trực tuyến."
+    },
+    {
+        "paragraph":  250,
+        "before":  "2. Hệ thống yêu cầu khách hàng Login.",
+        "after":  "2. Hệ thống hiển thị danh sách phim và liên kết đặt vé."
+    },
+    {
+        "paragraph":  251,
+        "before":  "3. Khách hàng đăng nhập.",
+        "after":  "3. Khách hàng chọn đặt vé cho một phim."
+    },
+    {
+        "paragraph":  252,
+        "before":  "4. Hệ thống hiển thị danh sách phim đang được chiếu.",
+        "after":  "4. Hệ thống hiển thị thông tin phim và các ngày chiếu."
+    },
+    {
+        "paragraph":  253,
+        "before":  "5. Khách hàng chọn phim.",
+        "after":  "5. Khách hàng chọn ngày, giờ và nhấn Đồng ý."
+    },
+    {
+        "paragraph":  254,
+        "before":  "6. Hệ thống hiển thị các suất chiếu của phim đã chọn.",
+        "after":  "6. Hệ thống hiển thị thông tin xác nhận suất chiếu."
+    },
+    {
+        "paragraph":  255,
+        "before":  "7. Khách hàng chọn giờ xem.",
+        "after":  "7. Khách hàng xác nhận suất; đăng nhập nếu chưa có phiên, hoặc bỏ qua đăng nhập nếu đã đăng nhập."
+    },
+    {
+        "paragraph":  256,
+        "before":  "8. Hệ thống hiển thị sơ đồ ghế và trạng thái ghế.",
+        "after":  "8. Hệ thống hiển thị sơ đồ ghế và trạng thái theo suất."
+    },
+    {
+        "paragraph":  257,
+        "before":  "9. Khách hàng chọn ghế.",
+        "after":  "9. Khách chọn/bỏ chọn một hoặc nhiều ghế trống; giao diện cập nhật danh sách ghế và tổng tiền dự kiến."
+    },
+    {
+        "paragraph":  258,
+        "before":  "10. Hệ thống kiểm tra ghế đã chọn còn khả dụng hay không.",
+        "after":  "10. Khách hàng nhấn Xác nhận danh sách ghế."
+    },
+    {
+        "paragraph":  259,
+        "before":  "11. Hệ thống yêu cầu khách hàng nhập mã thẻ khách hàng thân thiết nếu có.",
+        "after":  "11. Máy chủ kiểm tra và giữ toàn bộ ghế trong cùng giao dịch, gắn với phiên và hạn giữ tối đa 5 phút. Nếu một ghế không khả dụng, lượt giữ không thành công."
+    },
+    {
+        "paragraph":  260,
+        "before":  "12. Khách hàng xác nhận thông tin mua vé.",
+        "after":  "12. Khi giữ thành công, hệ thống mở trang thanh toán, hiển thị ghế, số vé, tổng tiền và thời gian còn lại."
+    },
+    {
+        "paragraph":  261,
+        "before":  "13. Hệ thống hiển thị tổng số tiền cần thanh toán.",
+        "after":  "13. Khách kiểm tra thông tin và chọn phương thức thanh toán."
+    },
+    {
+        "paragraph":  262,
+        "before":  "14. Khách hàng thực hiện thanh toán.",
+        "after":  "14. Khách nhấn Thanh toán để thực hiện giao dịch mô phỏng."
+    },
+    {
+        "paragraph":  263,
+        "before":  "15. Hệ thống xác nhận thanh toán thành công.",
+        "after":  "15. Máy chủ kiểm tra chủ phiên, hạn giữ, danh sách vé và giá tại DB; ghi một hóa đơn và bán toàn bộ vé trong cùng giao dịch. Có lỗi thì rollback."
+    },
+    {
+        "paragraph":  264,
+        "before":  "16. Hệ thống tạo vé và hóa đơn.",
+        "after":  "16. Chỉ khi giao dịch thành công, hệ thống chuyển tới trang vé và hóa đơn."
+    },
+    {
+        "paragraph":  265,
+        "before":  "17. Hệ thống in/xuất vé và hóa đơn.",
+        "after":  "17. Khách xem kết quả và có thể nhấn In Vé / Hóa Đơn để in từ trình duyệt."
+    },
+    {
+        "paragraph":  268,
+        "before":  "Tại bước 3:",
+        "after":  "Tại bước 7:"
+    },
+    {
+        "paragraph":  272,
+        "before":  "Nếu đăng nhập thành công → tiếp tục bước 4. ",
+        "after":  "Đăng nhập thành công thì tiếp tục bước 8; mã suất được chuyển tiếp sau đăng nhập."
+    },
+    {
+        "paragraph":  274,
+        "before":  "Tại bước 10:",
+        "after":  "Tại bước 11:"
+    },
+    {
+        "paragraph":  275,
+        "before":  "Hệ thống phát hiện ghế không còn khả dụng. ",
+        "after":  "Máy chủ phát hiện ít nhất một ghế đã bán, đặt trước hoặc được phiên khác giữ còn hạn."
+    },
+    {
+        "paragraph":  276,
+        "before":  "Hệ thống thông báo cho khách hàng. ",
+        "after":  "Hệ thống rollback lượt giữ và quay lại chọn ghế kèm thông báo."
+    },
+    {
+        "paragraph":  277,
+        "before":  "Khách hàng chọn ghế khác. ",
+        "after":  "Khách chọn lại ghế; lượt giữ mới không thành công một phần."
+    },
+    {
+        "paragraph":  279,
+        "before":  "A3. Không nhập mã thành viên",
+        "after":  "A3. Hết hạn giữ ghế"
+    },
+    {
+        "paragraph":  280,
+        "before":  "Tại bước 11:",
+        "after":  "Tại bước 12–15:"
+    },
+    {
+        "paragraph":  281,
+        "before":  "Khách hàng không có hoặc không muốn sử dụng mã thành viên. ",
+        "after":  "Hạn giữ đã hết theo giờ DB; máy chủ từ chối chốt các vé hết hạn."
+    },
+    {
+        "paragraph":  282,
+        "before":  "Hệ thống bỏ qua bước này. ",
+        "after":  "Đồng hồ tại trang thanh toán về 00:00 thì khóa nút Thanh toán và chuyển về chọn ghế kèm thông báo hết hạn."
+    },
+    {
+        "paragraph":  283,
+        "before":  "Tiếp tục bước 12.",
+        "after":  "Ghế được giải phóng khi trang chọn ghế xử lý hoặc được thu hồi khi đọc sơ đồ/đặt lại. Khách quay lại bước 9; chưa có tác vụ nền cập nhật DB đúng thời điểm hết hạn nếu không có request."
+    },
+    {
+        "paragraph":  284,
+        "before":  "A4. Mã thành viên không hợp lệ",
+        "after":  "A4. Hủy hoặc chọn lại ghế"
+    },
+    {
+        "paragraph":  285,
+        "before":  "Tại bước 11:",
+        "after":  "Tại bước 12–14:"
+    },
+    {
+        "paragraph":  286,
+        "before":  "Khách hàng nhập mã không hợp lệ. ",
+        "after":  "Khách chọn Hủy hoặc Chọn lại ghế trên trang thanh toán."
+    },
+    {
+        "paragraph":  287,
+        "before":  "Hệ thống thông báo lỗi. ",
+        "after":  "Hệ thống trở về chọn ghế và giải phóng lượt giữ của phiên hiện tại trong suất đó."
+    },
+    {
+        "paragraph":  288,
+        "before":  "Khách hàng nhập lại hoặc bỏ qua. ",
+        "after":  "Không giải phóng ghế đã bán hoặc được phiên khác giữ."
+    },
+    {
+        "paragraph":  289,
+        "before":  "Tiếp tục quy trình. ",
+        "after":  "Khách có thể chọn lại hoặc kết thúc lượt mua."
+    },
+    {
+        "paragraph":  290,
+        "before":  "A5. Thanh toán thất bại",
+        "after":  "A5. Chốt giao dịch mô phỏng không thành công"
+    },
+    {
+        "paragraph":  291,
+        "before":  "Tại bước 14:",
+        "after":  "Tại bước 15:"
+    },
+    {
+        "paragraph":  292,
+        "before":  "Hệ thống thông báo thanh toán thất bại. ",
+        "after":  "Lượt giữ không hợp lệ thì quay lại chọn ghế và báo hết hạn/phiên không hợp lệ. Lỗi DB thì rollback và báo lỗi hệ thống."
+    },
+    {
+        "paragraph":  293,
+        "before":  "Khách hàng thực hiện thanh toán lại hoặc hủy giao dịch. ",
+        "after":  "Giao dịch bị rollback không tạo hóa đơn mua thành công hoặc bán một phần vé."
+    },
+    {
+        "paragraph":  294,
+        "before":  "Nếu thanh toán lại thành công → bước 15. ",
+        "after":  "Khách kiểm tra trạng thái ghế và thực hiện lại lượt mua khi có thể."
+    },
+    {
+        "paragraph":  295,
+        "before":  "Nếu hủy → Use Case kết thúc.",
+        "after":  "Chưa có phản hồi cổng thanh toán thật hoặc nút Thanh toán lại tại trang thanh toán. Luồng thử lại sau phản hồi nhà cung cấp cần được bổ sung khi tích hợp thật."
+    },
+    {
+        "paragraph":  306,
+        "before":  "Phim mới được ghi nhận vào hệ thống và nút AddMovie1 bị xám.",
+        "after":  "Phim mới được ghi nhận và hiển thị trong danh sách kèm thông báo thành công. Nút Thêm thông tin phim vẫn dùng được để tiếp tục thêm phim khác."
+    },
+    {
+        "paragraph":  323,
+        "before":  " 2.Hệ thống hiển thị biểu mẫu (form) nhập thông tin phim với nút “xác nhận” và “hủy”.",
+        "after":  "2. Hệ thống hiển thị form tên phim, thời lượng, thể loại, đạo diễn, diễn viên và mô tả, cùng liên kết Hủy và nút Xác nhận."
+    },
+    {
+        "paragraph":  342,
+        "before":  "4.Hệ thống kích hoạt Validate Movie Data1 để kiểm tra tính hợp lệ của dữ liệu.Sau khi dữ liệu hợp lệ , hệ thống lưu thông tin vào db.",
+        "after":  "4. Hệ thống kiểm tra tên không rỗng, thời lượng là số nguyên lớn hơn 0 và trùng tên, sau đó lưu dữ liệu hợp lệ vào DB."
+    },
+    {
+        "paragraph":  343,
+        "before":  "5.Hệ thống thông báo thêm thành công và cập nhật lại View Movie List1.",
+        "after":  "5. Hệ thống tự động trở về trang danh sách, tải lại dữ liệu và hiển thị thông báo thêm thành công."
+    },
+    {
+        "paragraph":  361,
+        "before":  "- 4a. Dữ liệu không hợp lệ (qua Validate Movie Data1): Hệ thống trả về lỗi, highlight các trường nhập sai và yêu cầu nhập lại.",
+        "after":  "- 4a. Dữ liệu sai: mở lại form và báo lỗi chung để nhập lại; chưa highlight từng trường hoặc phục hồi dữ liệu sau redirect."
+    },
+    {
+        "paragraph":  362,
+        "before":  "- 5a. Trùng lặp dữ liệu: Phim đã tồn tại trong hệ thống, hệ thống hiển thị cảnh báo và hủy thao tác.",
+        "after":  "- 5a. Trùng tên: cảnh báo và không thêm phim mới. Lỗi DB hiện cũng có thể bị báo cùng loại; cần tách thông báo khi hoàn thiện."
+    },
+    {
+        "paragraph":  370,
+        "before":  "Lịch chiếu và sơ đồ phòng chiếu đã được cấu hình và mở bán.",
+        "after":  "Phim, lịch chiếu và sơ đồ ghế đã được cấu hình; hệ thống và DB hoạt động. Khách có thể xem phim/suất trước khi đăng nhập và được yêu cầu đăng nhập trong luồng thông thường trước khi chọn ghế."
+    },
+    {
+        "paragraph":  372,
+        "before":  "Khách hàng mua được vé thành công và hệ thống xác nhận.",
+        "after":  "Khách mua thành công một hoặc nhiều vé trong cùng suất, nhận một hóa đơn và xem/in được kết quả. Các vé được chốt đồng thời; giao dịch lỗi không bán một phần."
+    },
+    {
+        "paragraph":  375,
+        "before":  "2. Hệ thống hiển thị trang chủ gồm danh sách các phim chiếu cùng với nút Đặt vé dưới mỗi phim.",
+        "after":  "2. Hệ thống hiển thị danh sách phim và liên kết Đặt ngay ở từng dòng."
+    },
+    {
+        "paragraph":  390,
+        "before":  "3.Khách hàng nhấn nút Đặt vé của phim Út lan.",
+        "after":  "3. Khách chọn đặt vé cho một phim trong danh sách."
+    },
+    {
+        "paragraph":  391,
+        "before":  "4. Hệ thống hiển thị các suất chiếu của phim đã chọn.",
+        "after":  "4. Hệ thống hiển thị thông tin phim, các ngày chiếu và các giờ của ngày đang chọn."
+    },
+    {
+        "paragraph":  401,
+        "before":  "5. Khách hàng chọn giờ xem.",
+        "after":  "5. Khách chọn ngày, giờ và nhấn Đồng ý để xem xác nhận suất."
+    },
+    {
+        "paragraph":  402,
+        "before":  "6. Hệ thống hiện thị thông tin suất chiếu bạn chọn.",
+        "after":  "6. Hệ thống hiển thị phim, rạp, phòng, ngày, giờ và giá vé cơ bản."
+    },
+    {
+        "paragraph":  411,
+        "before":  "7. Khách hành nhấn chọn “ Đồng ý ”.",
+        "after":  "7. Khách nhấn Đồng ý xác nhận suất."
+    },
+    {
+        "paragraph":  412,
+        "before":  "8. Hệ thống yêu cầu khách hàng đăng nhập.",
+        "after":  "8. Chưa đăng nhập thì hệ thống mở form đăng nhập; đã đăng nhập thì chuyển thẳng sang chọn ghế."
+    },
+    {
+        "paragraph":  413,
+        "before":  "9.Khách hàng đăng nhập.",
+        "after":  "9. Khách đăng nhập nếu được yêu cầu; mã suất được chuyển tiếp khi đăng nhập thành công."
+    },
+    {
+        "paragraph":  414,
+        "before":  "10. Hệ thống hiển thị sơ đồ ghế và trạng thái ghế, với ghế đỏ là ghế đã bán, ghế xanh dương là ghế đang giữ, ghế xanh đậm là đang chọn, ghế vàng là ghế đặt trước, ghế trắng là ghế trống.",
+        "after":  "10. Hệ thống hiển thị sơ đồ ghế: đỏ là Đã bán, xanh dương là Đang giữ, xanh đậm là Đang chọn, vàng là Đặt trước, trắng là Trống. Bấm chọn tại trình duyệt chưa tạo lượt giữ trên máy chủ."
+    },
+    {
+        "paragraph":  419,
+        "before":  "Ghế đạng chọn",
+        "after":  "Ghế đang chọn"
+    },
+    {
+        "paragraph":  438,
+        "before":  "11. Khách hàng chọn ghế.",
+        "after":  "11. Khách chọn/bỏ chọn một hoặc nhiều ghế trống trong cùng suất."
+    },
+    {
+        "paragraph":  439,
+        "before":  "12. Hệ thống kiểm tra ghế đã chọn còn khả dụng hay không, và hiện thị thông tin giá ghế.",
+        "after":  "12. Giao diện cập nhật danh sách ghế và tổng tiền dự kiến; kiểm tra/khóa giữ theo DB được thực hiện sau khi nhấn Xác nhận."
+    },
+    {
+        "paragraph":  449,
+        "before":  "13. Khách hàng  xác nhận thông tin mua vé.",
+        "after":  "13. Khách nhấn Xác nhận; máy chủ giữ toàn bộ ghế trong một giao dịch, gắn với phiên và hạn giữ tối đa 5 phút."
+    },
+    {
+        "paragraph":  450,
+        "before":  "14. Hệ thống hiển thị tổng số tiền cần thanh toán.",
+        "after":  "14. Giữ thành công thì hệ thống hiển thị thông tin thanh toán, số vé, tổng tiền và đếm ngược theo hạn giữ. Tải lại trang không gia hạn lượt giữ còn hiệu lực."
+    },
+    {
+        "paragraph":  455,
+        "before":  "Loại Ghế :                                         Số lượng vé x Giá vé = …….",
+        "after":  "Danh sách ghế, số vé và tổng giá theo các ghế đã chọn; chưa áp dụng ưu đãi thành viên."
+    },
+    {
+        "paragraph":  457,
+        "before":  "15. Khách hàng thực hiện thanh toán.",
+        "after":  "15. Khách chọn phương thức và nhấn Thanh toán để thực hiện giao dịch mô phỏng."
+    },
+    {
+        "paragraph":  458,
+        "before":  "16. Hệ thống xác nhận thanh toán thành công và tạo hóa đơn.",
+        "after":  "16. Máy chủ kiểm tra chủ phiên, hạn giữ và giá DB rồi ghi một hóa đơn, bán toàn bộ vé trong cùng giao dịch. Thành công thì mở trang vé/hóa đơn để xem/in; lỗi thì rollback và thông báo."
+    },
+    {
+        "paragraph":  473,
+        "before":  "1.  Suất chiếu đã hết chỗ:",
+        "after":  "1. Ghế không còn khả dụng hoặc suất không còn ghế trống"
+    },
+    {
+        "paragraph":  474,
+        "before":  "Tại bước 5:",
+        "after":  "Tại bước 13:"
+    },
+    {
+        "paragraph":  475,
+        "before":  "Khách hàng chọn suất chiếu hoặc xác nhận chọn ghế.",
+        "after":  "Khách xác nhận danh sách ghế đã chọn."
+    },
+    {
+        "paragraph":  476,
+        "before":  "Hệ thống kiểm tra cơ sở dữ liệu và ghi nhận suất chiếu không còn chỗ trống (hoặc ghế đã chuyển sang trạng thái đã bán).",
+        "after":  "Nếu một ghế đã bán, đặt trước hoặc được phiên khác giữ còn hạn thì máy chủ không giữ thêm ghế nào của lượt này."
+    },
+    {
+        "paragraph":  477,
+        "before":  "Hệ thống hiển thị thông báo: \"Suất chiếu này đã hết chỗ\" hoặc \"Ghế bạn chọn đã bị người khác đặt, vui lòng chọn ghế khác\".",
+        "after":  "Hệ thống quay lại chọn ghế và báo ghế vừa chọn đã bị người khác đặt hoặc đang giữ."
+    },
+    {
+        "paragraph":  478,
+        "before":  "Hệ thống giữ khách hàng ở lại trang hiện tại, cập nhật lại trạng thái ghế/suất chiếu mới nhất.",
+        "after":  "Sơ đồ được đọc lại. Nếu không còn ghế trống, khách có thể đổi suất; bản hiện tại chưa chặn suất hết chỗ ngay tại bước chọn giờ."
+    },
+    {
+        "paragraph":  479,
+        "before":  "Khách hàng quay lại bước 4 và tiếp tục thực hiện",
+        "after":  "Khách chọn lại ở bước 11 hoặc đổi ngày/suất từ bước 4."
+    },
+    {
+        "paragraph":  480,
+        "before":  "2. Thanh toán thất bại.",
+        "after":  "2. Chốt giao dịch mô phỏng thất bại"
+    },
+    {
+        "paragraph":  481,
+        "before":  "Tại bước 13, khách hàng xác nhận thanh toán trên cổng thanh toán.",
+        "after":  "Tại bước 15–16:"
+    },
+    {
+        "paragraph":  482,
+        "before":  "Cổng thanh toán trả về kết quả giao dịch thất bại.",
+        "after":  "Máy chủ phát hiện lượt giữ không hợp lệ hoặc gặp lỗi DB; bản demo không nhận phản hồi cổng thanh toán thật."
+    },
+    {
+        "paragraph":  483,
+        "before":  "Hệ thống nhận phản hồi lỗi và hiển thị thông báo: \"Giao dịch thanh toán thất bại. Vui lòng kiểm tra lại thông tin hoặc thử phương thức khác\".",
+        "after":  "Giao dịch rollback; thông báo hết hạn/phiên không hợp lệ hoặc lỗi hệ thống xuất hiện trên trang chọn ghế."
+    },
+    {
+        "paragraph":  484,
+        "before":  "Hệ thống vẫn giữ trạng thái ghế đang hold (nếu chưa hết thời gian quy định) và hiển thị lại nút \"Thanh toán lại\".",
+        "after":  "Chưa có nút Thanh toán lại. Lỗi DB không tạo hóa đơn hoặc bán vé một phần; lượt giữ còn hiệu lực có thể tồn tại đến khi hủy hoặc hết hạn."
+    },
+    {
+        "paragraph":  485,
+        "before":  "Khách hàng thực hiện thanh toán lại (Quay về bước 13 )hoặc chọn Hủy giao dịch.",
+        "after":  "Khách kiểm tra trạng thái, thực hiện lại lượt mua khi có thể hoặc kết thúc. Luồng thử lại sau phản hồi nhà cung cấp cần bổ sung khi tích hợp thật."
+    },
+    {
+        "paragraph":  486,
+        "before":  "3.Hết thời gian giữ ghế.",
+        "after":  "3. Hết thời gian giữ ghế"
+    },
+    {
+        "paragraph":  487,
+        "before":  "Khách hàng đang ở màn hình chọn ghế, điền thông tin hoặc chờ thanh toán.",
+        "after":  "Khách đang tại trang thanh toán sau khi tạo lượt giữ; hạn giữ được tính theo DB."
+    },
+    {
+        "paragraph":  488,
+        "before":  "Đồng hồ đếm ngược của hệ thống đếm lùi về 00:00.",
+        "after":  "Đếm ngược về 00:00 thì khóa nút Thanh toán; máy chủ luôn từ chối checkout của vé hết hạn dù trình duyệt chưa cập nhật."
+    },
+    {
+        "paragraph":  489,
+        "before":  "Hệ thống tự động hủy bỏ trạng thái giữ ghế của phiên giao dịch hiện tại, cập nhật lại trạng thái ghế thành \"Trống\" trên cơ sở dữ liệu., chuyển màu từ màu xanh sang màu trắng",
+        "after":  "Trở về chọn ghế thì giải phóng lượt giữ của phiên. Ghế hết hạn cũng được thu hồi khi đọc sơ đồ hoặc đặt lại; chưa có tác vụ nền độc lập với request."
+    },
+    {
+        "paragraph":  490,
+        "before":  "Hệ thống hiển thị thông báo: \"Đã hết thời gian thanh toán/giữ ghế. Vui lòng tiến hành đặt vé lại từ đầu\".",
+        "after":  "Hệ thống báo phiên giữ ghế đã hết hạn hoặc không hợp lệ và yêu cầu chọn lại."
+    },
+    {
+        "paragraph":  491,
+        "before":  "Hệ thống tự động điều hướng khách hàng về trang chủ hoặc trang chi tiết phim.",
+        "after":  "Khách được chuyển về chọn ghế của suất hiện tại; có thể chọn lại hoặc đổi suất."
+    },
+    {
+        "paragraph":  496,
+        "before":  "ThanhVien1:  username, password, hoTen, ngaySinh, diaChi, email, sdt, vaiTro",
+        "after":  "User1: id, username, password, fullName, email, phoneNumbers."
+    },
+    {
+        "paragraph":  497,
+        "before":  "KhachHang1 : maKH, maTheThanhVien, diemTichLuy.",
+        "after":  "Customers1 kế thừa User1: memberCode, points, dsBill : List\u003cBill1\u003e; Customer1 kế thừa Customers1 để tương thích tên lớp."
+    },
+    {
+        "paragraph":  498,
+        "before":  "NhanVien1: maNV, viTri",
+        "after":  "Staff1 kế thừa User1: viTri."
+    },
+    {
+        "paragraph":  499,
+        "before":  "NhanVienQuanLy1 và NhanVienBanHang1 ",
+        "after":  "Manager1 và SalePerson1 kế thừa Staff1."
+    },
+    {
+        "paragraph":  501,
+        "before":  "RapChieu1: id, tenRap, diaChi, moTa",
+        "after":  "Cinema1: id, nameCine, address, description, column, dsScreenRoom : List\u003cScreenRoom1\u003e."
+    },
+    {
+        "paragraph":  502,
+        "before":  "PhongChieu1: id, tenPhong, soLuongGhe, moTa",
+        "after":  "ScreenRoom1: id, nameScreen, seatNums, description, cinema, dsSeat : List\u003cSeat1\u003e, dsShowtime : List\u003cShowTime1\u003e."
+    },
+    {
+        "paragraph":  503,
+        "before":  "Ghe1 : id, soGhe, hangGhe, loaiGhe (Thường - VIP)",
+        "after":  "Seat1: id, numSeats, seatCode, typeSeat, screenRoom; trạng thái theo suất nằm tại Ticket1."
+    },
+    {
+        "paragraph":  505,
+        "before":  "Phim1: id, tenPhim, theLoai, thoiLuong, daoDien, dienVien, moTa, namSanXuat.",
+        "after":  "Movie1: id, nameMovies, type, duration : int, director, cast, descriptions."
+    },
+    {
+        "paragraph":  506,
+        "before":  "LichChieu (SuatChieu)1:id, ngayChieu, gioChieu, giaVe",
+        "after":  "ShowTime1: id, dateShow : Date, hoursShow : String, priceTicket : float, movie, room, dsTicket : List\u003cTicket1\u003e."
+    },
+    {
+        "paragraph":  507,
+        "before":  " (Là lớp thực thể trung gian giải quyết quan hệ N-N giữa Phim  và PhongChieu)",
+        "after":  "ShowTime1 liên kết một phim và một phòng tại một ngày, giờ cụ thể."
+    },
+    {
+        "paragraph":  509,
+        "before":  "Ve1:  id, giaVe, TrangThai  (là lớp thực thể trung gian giữa LichChieu và Ghe).",
+        "after":  "Ticket1: id, priceTicket, status, showtime, seat và bill. Vé trống/đang giữ có thể chưa thuộc hóa đơn."
+    },
+    {
+        "paragraph":  510,
+        "before":  "HoaDon1: id, ngayTao, tongTien, hoTen, khachHanh, dsVe, NhanVienBanHang.",
+        "after":  "Bill1: id, dateTime : String, totalAmount, paymentMethod, discount, customer : Customers1, salePerson : SalePerson1, dsTicket : List\u003cTicket1\u003e."
+    },
+    {
+        "paragraph":  513,
+        "before":  "KhachHang1 và NhanVien1 kế thừa ThanhVien1.",
+        "after":  "Customers1 và Staff1 kế thừa User1; Customer1 kế thừa Customers1."
+    },
+    {
+        "paragraph":  514,
+        "before":  "NhanVienQuanLy1 và NhanVienBanHang1 kế thừa thừa từ NhanVien",
+        "after":  "Manager1 và SalePerson1 kế thừa Staff1."
+    },
+    {
+        "paragraph":  515,
+        "before":  "Quan hệ hợp thành/gắn chặt",
+        "after":  "Quan hệ giữa các đối tượng"
+    },
+    {
+        "paragraph":  516,
+        "before":  "RapChieu chứa nhiều PhongChieu (1 - N)",
+        "after":  "Cinema1 – ScreenRoom1: một rạp có nhiều phòng; mỗi phòng thuộc một rạp."
+    },
+    {
+        "paragraph":  517,
+        "before":  "PhongChieu chứa nhiều Ghe(1 - N)",
+        "after":  "ScreenRoom1 – Seat1: một phòng có nhiều ghế; mỗi ghế thuộc một phòng. Việc chọn aggregation/composition cần dựa trên quy tắc sở hữu và vòng đời."
+    },
+    {
+        "paragraph":  519,
+        "before":  "Quan hệ N - N giữa Phim1 và PhongChieu1 tạo ra LichChieu ( LichChieu1 chứa Phim1 và PhongChieu1)",
+        "after":  "Movie1 – ShowTime1 – ScreenRoom1: mỗi suất gắn với một phim và một phòng; mỗi phim/phòng có thể có nhiều suất."
+    },
+    {
+        "paragraph":  520,
+        "before":  "Quan hệ N - N giữa HoaDon1 và Ve1 : Một HoaDon chứa danh sách nhiều Ve (1- N)",
+        "after":  "Bill1 – Ticket1 là một–nhiều: hóa đơn mua thành công gồm ít nhất một vé; mỗi vé thuộc tối đa một hóa đơn. Vé trống/đang giữ chưa có hóa đơn."
+    },
+    {
+        "paragraph":  521,
+        "before":  "Quan hệ N - N giữa LichChieu1 và Ghe1 tạo ra Ve1 (Ve chứa LichChieu và Ghe)",
+        "after":  "ShowTime1 – Ticket1 – Seat1: mỗi vé gắn với một suất và một ghế. Customers1 – Bill1 là một–nhiều; salePerson có thể không có khi mua trực tuyến."
+    },
+    {
+        "paragraph":  530,
+        "before":  "Tại giao diện chính của quản lí, sau khi đăng nhập, quản lí chọn ManageMovies1.",
+        "after":  "Quản lý mở gdManagerMain1.jsp sau đăng nhập và chọn quản lý thông tin phim."
+    },
+    {
+        "paragraph":  531,
+        "before":  "Lớp GDChinhQL1 gọi lớp GDManageMovies1.",
+        "after":  "Hệ thống mở gdMoviesManager1.jsp."
+    },
+    {
+        "paragraph":  532,
+        "before":  "Lớp GDManageMovies1 gọi lớp Movie1 yêu cầu lấy danh sách phim.",
+        "after":  "Trang danh sách yêu cầu Movie1DAO lấy các phim hiện có."
+    },
+    {
+        "paragraph":  533,
+        "before":  "Lớp Movie1 lấy danh sách phim.",
+        "after":  "Movie1DAO truy vấn DB và đóng gói bằng Movie1."
+    },
+    {
+        "paragraph":  534,
+        "before":  "Lớp Movie1 trả kết quả lại cho lớp GDManageMovies1.",
+        "after":  "DAO trả List\u003cMovie1\u003e về trang danh sách."
+    },
+    {
+        "paragraph":  535,
+        "before":  "Lớp GDManageMovies1 hiển thị danh sách phim cho quản lí.",
+        "after":  "Trang quản lý hiển thị danh sách phim."
+    },
+    {
+        "paragraph":  536,
+        "before":  "Quản lí click Thêm phim.",
+        "after":  "Quản lý chọn Thêm thông tin phim."
+    },
+    {
+        "paragraph":  537,
+        "before":  "Lớp GDManageMovies1 gọi lớp GDAddMovies1.",
+        "after":  "Hệ thống mở gdAddMovie1.jsp."
+    },
+    {
+        "paragraph":  538,
+        "before":  "Lớp GDAddMovies1 hiển thị form nhập thông tin phim cho quản lí.",
+        "after":  "Trang thêm phim hiển thị form."
+    },
+    {
+        "paragraph":  539,
+        "before":  "Quản lí nhập thông tin phim và click Lưu.",
+        "after":  "Quản lý nhập thông tin và nhấn Xác nhận; form gửi tới DoAddMovie.jsp."
+    },
+    {
+        "paragraph":  540,
+        "before":  "Lớp GDAddMovies1 gọi lớp Movie1 yêu cầu lưu phim.",
+        "after":  "Trang xử lý kiểm tra tên và thời lượng nguyên dương rồi tạo Movie1 bằng dữ liệu hợp lệ."
+    },
+    {
+        "paragraph":  541,
+        "before":  "Lớp Movie1 lưu thông tin phim.",
+        "after":  "DoAddMovie.jsp gọi Movie1DAO.addMovies(movie) để kiểm tra trùng tên và lưu."
+    },
+    {
+        "paragraph":  542,
+        "before":  "Lớp Movie1 trả kết quả lại cho lớp GDAddMovies1.",
+        "after":  "Movie1DAO trả kết quả lưu."
+    },
+    {
+        "paragraph":  543,
+        "before":  "Lớp GDAddMovies1 thông báo thêm phim thành công",
+        "after":  "Thành công thì redirect tới gdMoviesManager1.jsp?msg=added; trang danh sách tải lại dữ liệu và báo thành công. Không có bước bấm xác nhận thông báo thành công riêng."
+    },
+    {
+        "paragraph":  550,
+        "before":  "Kịch bản v2 của module “đặt vé trực tiếp”",
+        "after":  "Kịch bản v2 của module mua vé trực tuyến"
+    },
+    {
+        "paragraph":  551,
+        "before":  "Khách hàng click chọn 1 phim cần đặt vé.",
+        "after":  "Khách mở gdHome1.jsp và chọn đặt vé cho một phim."
+    },
+    {
+        "paragraph":  552,
+        "before":  "Lớp GDHome1 gọi lớp Movie1 yêu cầu lấy thông tin chi tiết phim.",
+        "after":  "Trang chủ lấy List\u003cMovie1\u003e từ Movie1DAO để hiển thị."
+    },
+    {
+        "paragraph":  553,
+        "before":  "Lớp Movie1 tìm kiếm dữ liệu của phim được chọn.",
+        "after":  "Chọn phim thì chuyển mã phim tới gdShowTime1.jsp."
+    },
+    {
+        "paragraph":  554,
+        "before":  "Lớp Movie1 trả kết quả lại cho lớp GDHome1.",
+        "after":  "Trang chọn suất lấy phim, ngày và suất qua Movie1DAO, ShowTime1DAO."
+    },
+    {
+        "paragraph":  555,
+        "before":  "Lớp GDHome1 gọi lớp GDShowTime1.",
+        "after":  "Hệ thống hiển thị các liên kết ngày và giờ."
+    },
+    {
+        "paragraph":  556,
+        "before":  "Lớp GDShowTime1 hiển thị danh sách ngày và suất chiếu cho khách hàng.",
+        "after":  "Khách chọn ngày và suất; thông tin đang chọn được cập nhật trên cùng trang."
+    },
+    {
+        "paragraph":  557,
+        "before":  "Khách hàng click chọn 1 suất chiếu.",
+        "after":  "Khách nhấn Đồng ý để mở gdConfirmShow1.jsp."
+    },
+    {
+        "paragraph":  558,
+        "before":  "Lớp GDShowTime1 gọi lớp ShowTime yêu cầu kiểm tra tình trạng suất chiếu (còn chỗ hay không).",
+        "after":  "Trang xác nhận gọi ShowTime1DAO, Cinema1DAO, ScreenRoom1DAO lấy thông tin."
+    },
+    {
+        "paragraph":  559,
+        "before":  "Lớp ShowTime1 kiểm tra dữ liệu suất chiếu.",
+        "after":  "Hệ thống hiển thị suất, rạp, phòng và giá cơ bản."
+    },
+    {
+        "paragraph":  560,
+        "before":  "Lớp ShowTime1 trả kết quả hợp lệ (còn chỗ) lại cho lớp GDShowTime1.",
+        "after":  "Khách nhấn Đồng ý xác nhận suất."
+    },
+    {
+        "paragraph":  561,
+        "before":  "Lớp GDShowTime1 gọi lớp GDConfirmShow1.",
+        "after":  "Có phiên đăng nhập thì chuyển thẳng sang chọn ghế."
+    },
+    {
+        "paragraph":  562,
+        "before":  "Lớp GDConfirmShow1 hiển thị thông tin rạp, giờ chiếu để khách hàng kiểm tra lại.",
+        "after":  "Chưa có phiên thì mở gdLogin1.jsp và truyền mã suất."
+    },
+    {
+        "paragraph":  563,
+        "before":  "Khách hàng click nút Đồng ý xác nhận suất chiếu.",
+        "after":  "Khách nhập tài khoản, mật khẩu và nhấn Đăng nhập."
+    },
+    {
+        "paragraph":  564,
+        "before":  "Lớp GDConfirmShow1 gọi lớp Login1 yêu cầu xác thực người dùng.",
+        "after":  "Form gửi tới doLogin1.jsp."
+    },
+    {
+        "paragraph":  565,
+        "before":  "Lớp Login1 hiển thị giao diện đăng nhập cho khách hàng.",
+        "after":  "Trang xử lý gọi User1DAO.login(username, password)."
+    },
+    {
+        "paragraph":  566,
+        "before":  "Khách hàng nhập tài khoản, mật khẩu và click Đăng nhập.",
+        "after":  "Sai thì mở lại form kèm lỗi; đúng thì lưu người dùng vào session."
+    },
+    {
+        "paragraph":  567,
+        "before":  "Lớp Login1 gọi lớp User1 yêu cầu kiểm tra thông tin đăng nhập.",
+        "after":  "Đăng nhập thành công thì mở gdSeatSelect1.jsp với mã suất."
+    },
+    {
+        "paragraph":  568,
+        "before":  "Lớp User1 xác thực thông tin tài khoản hợp lệ.",
+        "after":  "Trang chọn ghế lấy suất và List\u003cTicket1\u003e qua ShowTime1DAO, Ticket1DAO."
+    },
+    {
+        "paragraph":  569,
+        "before":  "Lớp User1 trả kết quả thành công lại cho lớp Login1.",
+        "after":  "Hệ thống hiển thị sơ đồ và trạng thái ghế."
+    },
+    {
+        "paragraph":  570,
+        "before":  "Lớp Login1 gọi lớp GDSeatSelect1.",
+        "after":  "Khách chọn/bỏ chọn một hoặc nhiều ghế trống."
+    },
+    {
+        "paragraph":  571,
+        "before":  "Lớp GDSeatSelect1 hiển thị sơ đồ ghế cho khách hàng.",
+        "after":  "JavaScript cập nhật selectedSeats và tổng tiền dự kiến; bấm chọn chưa giữ ghế trên máy chủ."
+    },
+    {
+        "paragraph":  572,
+        "before":  "Khách hàng click chọn các vị trí ghế trống mong muốn.",
+        "after":  "Khách nhấn Xác nhận để gửi danh sách ID vé sang gdPayMent1.jsp."
+    },
+    {
+        "paragraph":  573,
+        "before":  "Lớp GDSeatSelect1 gọi lớp Ticket1 yêu cầu kiểm tra tính hợp lệ và giữ ghế.",
+        "after":  "Trang thanh toán gọi BookingDAO.hold(ids, showTimeId, owner)."
+    },
+    {
+        "paragraph":  574,
+        "before":  "Lớp Ticket kiểm tra trạng thái và thực hiện giữ ghế tạm thời (holdSeat).",
+        "after":  "BookingDAO khóa và kiểm tra các vé, ghi chủ phiên cùng hạn tối đa 5 phút; một ghế không hợp lệ thì rollback lượt giữ."
+    },
+    {
+        "paragraph":  575,
+        "before":  "Lớp Ticket trả kết quả giữ ghế thành công lại cho lớp GDSeatSelect1.",
+        "after":  "Thất bại thì quay lại chọn ghế kèm lỗi; thành công thì nhận hạn giữ và lấy thông tin vé."
+    },
+    {
+        "paragraph":  576,
+        "before":  "Lớp GDSeatSelect1 gọi lớp GDPayMent1.",
+        "after":  "Trang thanh toán hiển thị tổng tiền, phương thức và thời gian còn lại; chưa áp dụng mã thành viên."
+    },
+    {
+        "paragraph":  577,
+        "before":  "Lớp GDPayMent1 hiển thị tổng tiền và các phương thức thanh toán cho khách hàng.",
+        "after":  "Khách chọn phương thức, nhấn Thanh toán; form gửi tới doPayMent.jsp."
+    },
+    {
+        "paragraph":  578,
+        "before":  "Khách hàng chọn phương thức, nhập thông tin và click Thanh toán.",
+        "after":  "Trang xử lý gọi BookingDAO.checkout(...) với ID vé, suất, người dùng, chủ phiên và phương thức."
+    },
+    {
+        "paragraph":  579,
+        "before":  "Lớp GDPayMent1 gọi lớp Bill1 yêu cầu xử lý thanh toán.",
+        "after":  "BookingDAO kiểm tra chủ phiên, hạn giữ và giá DB; tạo hóa đơn và bán toàn bộ vé trong một giao dịch mô phỏng."
+    },
+    {
+        "paragraph":  580,
+        "before":  "Lớp Bill tính toán, xử lý giao dịch, chốt vé và cập nhật trạng thái hóa đơn.",
+        "after":  "Lỗi thì rollback; thành công thì commit và trả billId."
+    },
+    {
+        "paragraph":  581,
+        "before":  "Lớp Bill trả kết quả thanh toán thành công lại cho lớp GDPayMent1.",
+        "after":  "Chỉ billId hợp lệ mới chuyển tới gdTicketBill.jsp; trường hợp khác trở về chọn ghế kèm lỗi."
+    },
+    {
+        "paragraph":  582,
+        "before":  "Lớp GDPayMent1 gọi lớp GDTicketBill1.",
+        "after":  "Trang kết quả gọi Bill1DAO.getBillInfo() và Ticket1DAO.getTicketOfBills()."
+    },
+    {
+        "paragraph":  583,
+        "before":  "Lớp GDTicketBill1 hiển thị thông báo mua vé thành công, kèm thông tin vé và biên lai cho khách hàng.",
+        "after":  "Khách xem toàn bộ ghế đã mua chung hóa đơn và có thể in từ trình duyệt."
+    },
+    {
+        "paragraph":  610,
+        "before":  "Xây dựng sơ đồ activity diagram cho 2 modules “nhân viên thêm thông tin phim”",
+        "after":  "Xây dựng activity diagram cho hai module"
+    },
+    {
+        "paragraph":  611,
+        "before":  "Module  “nhân viên thêm thông tin phim”",
+        "after":  "Module nhân viên thêm thông tin phim"
+    },
+    {
+        "paragraph":  628,
+        "before":  "Hàm getMoviesList() trả danh sách phim (Movie1[]) về cho trang gdMoviesManager1.jsp.",
+        "after":  "getMoviesList() trả List\u003cMovie1\u003e về gdMoviesManager1.jsp."
+    },
+    {
+        "paragraph":  633,
+        "before":  "Nhân viên quản lý nhập thông tin phim mới (tên phim, thể loại, đạo diễn...) và click nút Lưu (btnSave).",
+        "after":  "Quản lý nhập tên, thể loại, thời lượng, đạo diễn, diễn viên và mô tả rồi nhấn Xác nhận (btnSave)."
+    },
+    {
+        "paragraph":  635,
+        "before":  "Trang DoAddMovie.jsp gọi lớp thực thể Movie1 yêu cầu đóng gói các thuộc tính phim mới nhập.",
+        "after":  "DoAddMovie.jsp kiểm tra tên không rỗng và thời lượng nguyên lớn hơn 0; sai thì redirect về form với error=empty, đúng thì tạo Movie1."
+    },
+    {
+        "paragraph":  638,
+        "before":  "Lớp Movie1DAO gọi hàm addMovies(m: Movie1).",
+        "after":  "Movie1DAO.addMovies(m : Movie1) kiểm tra trùng tên không phân biệt hoa thường rồi INSERT nếu chưa có."
+    },
+    {
+        "paragraph":  639,
+        "before":  "Hàm addMovies() thực hiện lưu và trả kết quả thành công (true) về cho trang DoAddMovie.jsp.",
+        "after":  "addMovies() trả true khi lưu thành công; false khi trùng tên hoặc lỗi DB. Bản hiện tại chưa tách hai loại lỗi này trong thông báo."
+    },
+    {
+        "paragraph":  640,
+        "before":  "Trang DoAddMovie.jsp hiển thị thông báo thêm thành công.",
+        "after":  "Lưu thành công thì DoAddMovie.jsp redirect tới gdMoviesManager1.jsp?msg=added; thất bại thì về gdAddMovie1.jsp?error=duplicate."
+    },
+    {
+        "paragraph":  641,
+        "before":  "Nhân viên quản lý click xác nhận trên thông báo.",
+        "after":  "gdMoviesManager1.jsp gọi getMoviesList() để tải lại dữ liệu."
+    },
+    {
+        "paragraph":  642,
+        "before":  "Trang DoAddMovie.jsp gọi lại trang gdMoviesManager1.jsp.",
+        "after":  "Trang danh sách hiện phim mới và thông báo Thêm thông tin phim thành công; không có bước bấm xác nhận trên hộp thoại riêng."
+    },
+    {
+        "paragraph":  647,
+        "before":  "Lớp Movie1DAO gọi hàm getMoviesList(), đóng gói qua lớp Movie1 và trả danh sách phim (Movie1[]) về cho trang gdHome1.jsp.",
+        "after":  "Movie1DAO.getMoviesList() truy vấn DB, đóng gói qua Movie1 và trả List\u003cMovie1\u003e cho gdHome1.jsp."
+    },
+    {
+        "paragraph":  651,
+        "before":  "Trang gdShowTime1.jsp gọi lớp Movie1DAO (hàm getMovieByID(int)) để lấy chi tiết phim và gọi lớp ShowTime1DAO (hàm getShowDates(int)) để lấy các ngày chiếu.",
+        "after":  "gdShowTime1.jsp gọi Movie1DAO.getMovieById(movieId) lấy phim và ShowTime1DAO.getShowDates(movieId) lấy List\u003cDate\u003e."
+    },
+    {
+        "paragraph":  652,
+        "before":  "Trang gdShowTime1.jsp hiển thị thông tin phim và yêu cầu khách hàng chọn ngày chiếu (selSelectedDate).",
+        "after":  "Trang hiện phim và nhóm liên kết ngày; selectedDate lưu ngày đang chọn, mặc định là ngày đầu tiên nếu có lịch."
+    },
+    {
+        "paragraph":  655,
+        "before":  "Lớp ShowTime1DAO đóng gói qua lớp ShowTime1 và trả danh sách suất chiếu (ShowTime1[]) về cho trang gdShowTime1.jsp.",
+        "after":  "ShowTime1DAO đóng gói dữ liệu qua ShowTime1 và trả List\u003cShowTime1\u003e."
+    },
+    {
+        "paragraph":  656,
+        "before":  "Trang gdShowTime1.jsp hiển thị danh sách giờ xem (tblShowTimeList) cho khách hàng.",
+        "after":  "Trang hiển thị nhóm liên kết giờ chiếu và dòng thông tin suất đang chọn, không dùng bảng HTML."
+    },
+    {
+        "paragraph":  657,
+        "before":  "Khách hàng click chọn 1 giờ xem (selectShowtime).",
+        "after":  "Khách bấm một liên kết giờ (selectShowtime); trang tải lại để cập nhật selectedShowTimeId."
+    },
+    {
+        "paragraph":  658,
+        "before":  "Trang gdShowTime1.jsp gọi trang gdConfirmShow1.jsp.",
+        "after":  "Khách nhấn Đồng ý (btnAgree), hệ thống mở gdConfirmShow1.jsp với showTimeId."
+    },
+    {
+        "paragraph":  662,
+        "before":  "Trang gdConfirmShow1.jsp gọi trang gdLogin1.jsp.",
+        "after":  "Có currentUser trong session thì chuyển tới gdSeatSelect1.jsp; chưa có thì mở gdLogin1.jsp và truyền showTimeId."
+    },
+    {
+        "paragraph":  663,
+        "before":  "Trang gdLogin1.jsp hiển thị giao diện đăng nhập cho khách hàng.",
+        "after":  "Trang đăng nhập hiển thị form và giữ showTimeId bằng trường ẩn."
+    },
+    {
+        "paragraph":  666,
+        "before":  "Trang doLogin1.jsp gọi lớp User1DAO (hàm checkLogin(User1) và getCustomerInfo(int)) kiểm tra và lấy thông tin khách hàng (Customer1).",
+        "after":  "doLogin1.jsp gọi User1DAO.login(username, password); sai thì về form kèm lỗi, đúng thì lưu currentUser và chuyển tiếp mã suất. Trang không gọi checkLogin(User1) và getCustomerInfo(int) ở bước này."
+    },
+    {
+        "paragraph":  668,
+        "before":  "Trang gdSeatSelect1.jsp gọi lớp Ticket1DAO (hàm getSeatMap(int)) lấy sơ đồ ghế và hiển thị (tblSeatMap) cho khách hàng.",
+        "after":  "gdSeatSelect1.jsp gọi ShowTime1DAO.getShowTimeInfo(showTimeId), Ticket1DAO.getSeatMap(showTimeId), nhận List\u003cTicket1\u003e và hiển thị bằng các nút ghế trong div."
+    },
+    {
+        "paragraph":  669,
+        "before":  "Khách hàng click chọn ghế (selectSeat), hệ thống gọi Ticket1DAO (checkSeat(), holdSeat()) để giữ ghế tạm thời.",
+        "after":  "Bấm ghế gọi JavaScript selectSeat(...) để chọn/bỏ chọn, cập nhật Map selectedSeats, lblSelectedSeat và lblSelectedPrice; chưa gọi checkSeat() hoặc holdSeat() trên máy chủ."
+    },
+    {
+        "paragraph":  670,
+        "before":  "Khách hàng click xác nhận ghế (btnConfirmSeat).",
+        "after":  "Khách nhấn Xác nhận (btnConfirmSeat), form gửi showTimeId và chuỗi ticketIds của toàn bộ ghế đã chọn."
+    },
+    {
+        "paragraph":  671,
+        "before":  "Trang gdSeatSelect1.jsp gọi trang gdPayMent1.jsp.",
+        "after":  "gdPayMent1.jsp kiểm tra ID rồi gọi BookingDAO.hold(ticketIds, showTimeId, session.getId())."
+    },
+    {
+        "paragraph":  672,
+        "before":  "Trang gdPayMent1.jsp gọi lớp Bill1DAO (hàm calcTotal(Ticket1[])) tính tổng tiền và hiển thị giao diện thanh toán cho khách hàng.",
+        "after":  "BookingDAO kiểm tra và giữ toàn bộ ghế trong một giao dịch, trả hạn giữ hoặc 0. Không giữ được thì quay lại chọn ghế. Thành công thì trang lấy selectedTickets qua Ticket1DAO, lấy Customers1 qua User1DAO khi có người dùng, cộng giá và hiện tổng tiền, holdTimer; không gọi Bill1DAO.calcTotal()."
+    },
+    {
+        "paragraph":  673,
+        "before":  "Khách hàng chọn phương thức thanh toán (selPaymentMethod) và click thanh toán (btnPay).",
+        "after":  "Khách chọn selPaymentMethod và nhấn btnPay trước khi hết hạn giữ."
+    },
+    {
+        "paragraph":  675,
+        "before":  "Trang doPayMent.jsp gọi lớp Bill1DAO (hàm createBills(), pay(), updateStatus()) để tạo hóa đơn và thanh toán.",
+        "after":  "doPayMent.jsp gọi BookingDAO.checkout(ids, showTimeId, userId, session.getId(), paymentMethod) để thanh toán mô phỏng và chốt toàn bộ vé."
+    },
+    {
+        "paragraph":  676,
+        "before":  "Trang doPayMent.jsp gọi lớp Ticket1DAO (hàm markSold()) cập nhật trạng thái vé đã bán.",
+        "after":  "checkout() kiểm tra đúng chủ phiên và còn hạn, đọc lại giá, xác định khách, tạo hóa đơn, chuyển toàn bộ vé sang Đã bán và gắn billId. Các thao tác commit cùng nhau hoặc rollback; trang không gọi riêng createBills(), pay(), updateStatus(), markSold()."
+    },
+    {
+        "paragraph":  677,
+        "before":  "Trang doPayMent.jsp gọi trang gdTicketBill.jsp.",
+        "after":  "billId \u003e 0 thì redirect tới gdTicketBill.jsp?billId=...; giữ ghế không hợp lệ hoặc lỗi DB thì về gdSeatSelect1.jsp với mã lỗi tương ứng."
+    },
+    {
+        "paragraph":  678,
+        "before":  "Trang gdTicketBill.jsp gọi lớp Bill1DAO (getBillInfo()) và Ticket1DAO (getTicketOfBills()) lấy dữ liệu hiển thị vé và hóa đơn cho khách hàng.",
+        "after":  "gdTicketBill.jsp gọi Bill1DAO.getBillInfo(billId), Ticket1DAO.getTicketOfBills(billId), hiển thị hóa đơn, List\u003cTicket1\u003e, ghế và tổng tiền. Nút In Vé / Hóa Đơn gọi window.print(); không tự động in hoặc gửi email."
+    }
+]

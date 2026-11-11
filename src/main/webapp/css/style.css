@@ -1,0 +1,454 @@
+/* CineMan CSS Stylesheet - Faithful to Đề 13 PTTKHT Cine Wireframes */
+
+:root {
+    --header-blue: #164e63;
+    --primary-blue: #2563eb;
+    --primary-hover: #1d4ed8;
+    --success-green: #52b788;
+    --success-hover: #40916c;
+    --danger-red: #d90429;
+    --danger-hover: #ef233c;
+    --warning-yellow: #ffb703;
+    --seat-hold-blue: #00b4d8;
+    --seat-selected: #1d3557;
+    --bg-light: #f8fafc;
+    --border-color: #cbd5e1;
+    --text-dark: #1e293b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Navbar */
+.cineman-navbar {
+    background: linear-gradient(135deg, #164e63 0%, #0f172a 100%);
+    color: #ffffff;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.cineman-logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cineman-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cineman-nav-links a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.cineman-nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.cineman-nav-user {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #f1f5f9;
+}
+
+/* Page Container */
+.page-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 16px;
+    flex: 1;
+    width: 100%;
+}
+
+/* Card Mockup Window */
+.mockup-card {
+    background: #ffffff;
+    border: 2px solid #334155;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Wireframe Banner Header */
+.mockup-header {
+    background-color: #1a5374;
+    color: #ffffff;
+    text-align: center;
+    padding: 16px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.mockup-body {
+    padding: 30px;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    color: var(--text-dark);
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+/* Wireframe Table */
+.wireframe-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.wireframe-table th, .wireframe-table td {
+    border: 1px solid #cbd5e1;
+    padding: 14px 18px;
+    text-align: left;
+}
+
+.wireframe-table th {
+    background-color: #f1f5f9;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.wireframe-table tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Form Groups */
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.form-label {
+    width: 160px;
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 15px;
+}
+
+.form-control {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #94a3b8;
+    border-radius: 4px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+textarea.form-control {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #2b7bb9;
+    color: #ffffff;
+    border-color: #1e5a88;
+}
+
+.btn-primary:hover {
+    background-color: #206294;
+}
+
+.btn-success {
+    background-color: #52b788;
+    color: #ffffff;
+    border-color: #40916c;
+}
+
+.btn-success:hover {
+    background-color: #40916c;
+}
+
+.btn-danger {
+    background-color: #d90429;
+    color: #ffffff;
+    border-color: #b80020;
+}
+
+.btn-danger:hover {
+    background-color: #b80020;
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: #1e293b;
+    border: 1px solid #000000;
+}
+
+.btn-outline:hover {
+    background-color: #f1f5f9;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
+}
+
+/* Seat Selection Specific Styles */
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.legend-box {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #334155;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.screen-bar {
+    background-color: #e2e8f0;
+    border: 1px solid #94a3b8;
+    text-align: center;
+    padding: 8px;
+    margin: 20px auto 30px;
+    width: 80%;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.seat-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.seat-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.seat-btn {
+    width: 65px;
+    height: 42px;
+    border: 1px solid #334155;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.seat-btn:hover:not(.seat-sold):not(.seat-hold) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.seat-double {
+    width: 140px;
+}
+
+/* Seat States based on image20 */
+.seat-empty {
+    background-color: #ffffff;
+    color: #1e293b;
+}
+
+.seat-hold {
+    background-color: #00b4d8;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+.seat-sold {
+    background-color: #e63946;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+.seat-booked {
+    background-color: #ffdd00;
+    color: #1e293b;
+    cursor: not-allowed;
+}
+
+.seat-selected {
+    background-color: #1d3557;
+    color: #ffffff;
+    border-color: #0f172a;
+}
+
+/* Date & Time Select Badges */
+.badge-group {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 12px 0 24px;
+}
+
+.badge-btn {
+    padding: 12px 24px;
+    border: 1px solid #334155;
+    border-radius: 4px;
+    background: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #1e293b;
+    transition: all 0.2s;
+}
+
+.badge-btn:hover {
+    background: #e2e8f0;
+}
+
+.badge-btn.active {
+    background-color: #52b788;
+    color: #ffffff;
+    border-color: #388e3c;
+}
+
+/* Info Box */
+.info-box {
+    background-color: #f8fafc;
+    border: 1px dashed #64748b;
+    padding: 16px;
+    border-radius: 6px;
+    margin: 20px 0;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.alert-message {
+    padding: 12px 18px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.alert-danger {
+    background-color: #fee2e2;
+    border: 1px solid #ef4444;
+    color: #b91c1c;
+}
+
+.alert-success {
+    background-color: #dcfce7;
+    border: 1px solid #22c55e;
+    color: #15803d;
+}
+
+/* Timer Countdown */
+.timer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid #f87171;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 30px;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: #ffffff;
+    }
+    .cineman-navbar, .btn, .no-print {
+        display: none !important;
+    }
+    .page-container {
+        margin: 0;
+        max-width: 100%;
+    }
+    .mockup-card {
+        border: none;
+        box-shadow: none;
+    }
+}
+
