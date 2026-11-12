@@ -38,42 +38,44 @@ public class Movie1DAO extends DAO {
         return list.toArray(new Movie1[0]);
     }
 
-    public boolean addMovies(Movie1 m) {
-        String checkSql = "SELECT id FROM tblMovie1 WHERE LOWER(nameMovies) = LOWER(?)";
-        try (PreparedStatement psCheck = getConnection().prepareStatement(checkSql)) {
-            psCheck.setString(1, m.getNameMovies().trim());
-            try (ResultSet rsCheck = psCheck.executeQuery()) {
-                if (rsCheck.next()) {
-                    // Movie already exists (luong ngoai le 5a trong dac ta)
-                    return false;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+    public boolean addMovies(Movie1 movie) {
+        try { return addMoviesChecked(movie); }
+        catch (SQLException error) { error.printStackTrace(); return false; }
+    }
 
-        String sql = "INSERT INTO tblMovie1 (nameMovies, type, duration, cast, director, description) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, m.getNameMovies());
-            ps.setString(2, m.getType());
-            ps.setInt(3, m.getDuration());
-            ps.setString(4, m.getCast());
-            ps.setString(5, m.getDirector());
-            ps.setString(6, m.getDescriptions() != null ? m.getDescriptions() : m.getDescription());
-            int affected = ps.executeUpdate();
-            if (affected > 0) {
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        m.setId(rs.getInt(1));
+    public boolean addMoviesChecked(Movie1 m) throws SQLException {
+        try (Connection connection = DAO.openConnection()) {
+            String checkSql = "SELECT id FROM tblMovie1 WHERE LOWER(nameMovies) = LOWER(?)";
+            try (PreparedStatement psCheck = connection.prepareStatement(checkSql)) {
+                psCheck.setString(1, m.getNameMovies().trim());
+                try (ResultSet rsCheck = psCheck.executeQuery()) {
+                    if (rsCheck.next()) {
+                        // Movie already exists (luong ngoai le 5a trong dac ta)
+                        return false;
                     }
                 }
-                return true;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+            String sql = "INSERT INTO tblMovie1 (nameMovies, type, duration, cast, director, description) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, m.getNameMovies());
+                ps.setString(2, m.getType());
+                ps.setInt(3, m.getDuration());
+                ps.setString(4, m.getCast());
+                ps.setString(5, m.getDirector());
+                ps.setString(6, m.getDescriptions() != null ? m.getDescriptions() : m.getDescription());
+                int affected = ps.executeUpdate();
+                if (affected > 0) {
+                    try (ResultSet rs = ps.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            m.setId(rs.getInt(1));
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
         }
-        return false;
     }
 
     public Movie1 getMovieById(int id) {

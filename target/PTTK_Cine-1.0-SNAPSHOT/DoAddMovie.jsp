@@ -2,6 +2,7 @@
 <%@ page import="dao.Movie1DAO, model.Movie1" %>
 <%
     request.setCharacterEncoding("UTF-8");
+    if (!"POST".equals(request.getMethod())) { response.sendError(405); return; }
 
     String nameMovies = request.getParameter("txnameMovie");
     String type = request.getParameter("selType");
@@ -10,19 +11,22 @@
     String cast = request.getParameter("txtCast");
     String description = request.getParameter("txtDescription");
 
-    // Luồng ngoại lệ 4a: Validate Movie Data1
-    if (nameMovies == null || nameMovies.trim().isEmpty() || durationStr == null || durationStr.trim().isEmpty()) {
-        response.sendRedirect("gdAddMovie1.jsp?error=empty");
-        return;
-    }
-
+    java.util.Map<String,String> errors = new java.util.HashMap<>();
+    if (nameMovies == null || nameMovies.trim().isEmpty()) errors.put("txnameMovie", "Vui lòng nhập tên phim.");
+    if (type == null || type.trim().isEmpty()) errors.put("selType", "Vui lòng nhập thể loại.");
     int duration = 0;
     try {
-        duration = Integer.parseInt(durationStr.trim());
+        duration = Integer.parseInt(durationStr == null ? "" : durationStr.trim());
         if (duration <= 0) throw new NumberFormatException();
-    } catch (NumberFormatException e) {
-        response.sendRedirect("gdAddMovie1.jsp?error=empty");
-        return;
+    } catch (NumberFormatException e) { errors.put("txtDuration", "Thời lượng phải là số nguyên lớn hơn 0."); }
+    String[] fields = {"txnameMovie", "selType", "txtDirector", "txtCast", "txtDescription"};
+    for (String field : fields) {
+        String value = request.getParameter(field);
+        if (value != null && value.trim().length() > 255) errors.put(field, "Tối đa 255 ký tự.");
+    }
+    if (!errors.isEmpty()) {
+        request.setAttribute("fieldErrors", errors);
+        request.getRequestDispatcher("gdAddMovie1.jsp").forward(request, response); return;
     }
 
     // Step 586-587: Đóng gói đối tượng Movie1
@@ -36,14 +40,17 @@
 
     // Step 588-589: Gọi hàm Movie1DAO.addMovies(m: Movie1)
     Movie1DAO movieDAO = new Movie1DAO();
-    boolean success = movieDAO.addMovies(movie);
-
-    if (success) {
-        // Step 591-593: Thành công -> chuyển về gdMoviesManager1.jsp
-        response.sendRedirect("gdMoviesManager1.jsp?msg=added");
-    } else {
-        // Luồng ngoại lệ 5a: Trùng lặp dữ liệu phim đã tồn tại
-        response.sendRedirect("gdAddMovie1.jsp?error=duplicate");
+    try {
+        if (movieDAO.addMoviesChecked(movie)) {
+            response.sendRedirect("gdMoviesManager1.jsp?msg=added");
+        } else {
+            errors.put("txnameMovie", "Tên phim này đã tồn tại.");
+            request.setAttribute("fieldErrors", errors);
+            request.getRequestDispatcher("gdAddMovie1.jsp").forward(request, response);
+        }
+    } catch (java.sql.SQLException e) {
+        application.log("Could not add movie", e);
+        request.setAttribute("saveError", "Không thể lưu phim do lỗi hệ thống. Vui lòng thử lại.");
+        request.getRequestDispatcher("gdAddMovie1.jsp").forward(request, response);
     }
 %>
-

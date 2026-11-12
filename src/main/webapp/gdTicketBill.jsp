@@ -17,6 +17,12 @@
         return;
     }
 
+    model.User1 viewer = (model.User1) session.getAttribute("currentUser");
+    if (!(viewer instanceof model.Manager1) && (bill.getCustomer() == null
+            || bill.getCustomer().getId() != viewer.getId())) {
+        response.sendError(403); return;
+    }
+
     List<Ticket1> tickets = ticketDAO.getTicketOfBills(billId);
     Ticket1 firstTicket = (!tickets.isEmpty()) ? tickets.get(0) : null;
 

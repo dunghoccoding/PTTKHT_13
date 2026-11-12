@@ -94,6 +94,12 @@ public class BookingDAOTest {
         String base = "http://localhost:8080/";
         HttpClient client = HttpClient.newBuilder().cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ALL)).build();
         HttpClient stranger = HttpClient.newBuilder().cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ALL)).build();
+        for (HttpClient browser : Arrays.asList(client, stranger)) {
+            HttpResponse<String> login = browser.send(HttpRequest.newBuilder(URI.create(base + "doLogin1.jsp"))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString("txtUserName=khachhang&txtPassword=123456")).build(), HttpResponse.BodyHandlers.ofString());
+            assertEquals(302, login.statusCode(), login.body());
+        }
         String query = "showTimeId=" + show + "&ticketIds=" + BookingDAO.joinIds(ids.subList(0, 2));
         HttpResponse<String> seats = client.send(HttpRequest.newBuilder(URI.create(base + "gdSeatSelect1.jsp?showTimeId=" + show)).build(), HttpResponse.BodyHandlers.ofString());
         assertEquals(200, seats.statusCode(), seats.body());
@@ -110,6 +116,18 @@ public class BookingDAOTest {
         String form = query + "&selPaymentMethod=" + URLEncoder.encode("Ví VNPay", StandardCharsets.UTF_8);
         HttpRequest payRequest = HttpRequest.newBuilder(URI.create(base + "doPayMent.jsp"))
             .header("Content-Type", "application/x-www-form-urlencoded").POST(HttpRequest.BodyPublishers.ofString(form)).build();
+        HttpResponse<String> failed = client.send(HttpRequest.newBuilder(URI.create(base + "doPayMent.jsp"))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(form + "&simulationResult=failure")).build(), HttpResponse.BodyHandlers.ofString());
+        String retryUrl = failed.headers().firstValue("location").orElseThrow();
+        assertTrue(retryUrl.contains("error=payment_failed"), retryUrl);
+        HttpResponse<String> retry = client.send(HttpRequest.newBuilder(URI.create(base).resolve(retryUrl)).build(), HttpResponse.BodyHandlers.ofString());
+        assertEquals(200, retry.statusCode(), retry.body());
+        assertTrue(retry.body().contains("Thanh toán lại"), retry.body());
+        try (Connection c = DAO.openConnection(); Statement st = c.createStatement(); ResultSet rs = st.executeQuery(
+                "SELECT COUNT(*) FROM tblTicket1 WHERE tblShowTime1id=" + show + " AND status='Đang giữ' AND tblBill1id IS NULL")) {
+            assertTrue(rs.next()); assertEquals(2, rs.getInt(1));
+        }
         HttpResponse<String> paid = client.send(payRequest, HttpResponse.BodyHandlers.ofString());
         assertEquals(302, paid.statusCode(), paid.body());
         String location = paid.headers().firstValue("location").orElseThrow();
@@ -124,5 +142,42 @@ public class BookingDAOTest {
         try (Connection c = DAO.openConnection(); Statement st = c.createStatement(); ResultSet rs = st.executeQuery("SELECT b.totalAmount,COUNT(t.id) FROM tblBill1 b JOIN tblTicket1 t ON t.tblBill1id=b.id WHERE b.id=" + bill + " GROUP BY b.id")) {
             assertTrue(rs.next()); assertEquals(90000f, rs.getFloat(1)); assertEquals(2, rs.getInt(2));
         }
+    }
+
+    @Test
+    @org.junit.jupiter.api.condition.EnabledIfSystemProperty(named="booking.http", matches="true")
+    void httpAuthorizationAndMovieValidation() throws Exception {
+        HttpClient browser = HttpClient.newBuilder().cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ALL)).build();
+        String base = "http://localhost:8080/";
+        HttpResponse<String> blocked = browser.send(HttpRequest.newBuilder(URI.create(base + "gdSeatSelect1.jsp?showTimeId=" + show)).build(), HttpResponse.BodyHandlers.ofString());
+        assertEquals(302, blocked.statusCode());
+        assertTrue(blocked.headers().firstValue("location").orElse("").contains("gdLogin1.jsp"));
+        browser.send(HttpRequest.newBuilder(URI.create(base + "doLogin1.jsp"))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString("txtUserName=khachhang&txtPassword=123456")).build(), HttpResponse.BodyHandlers.ofString());
+        assertEquals(403, browser.send(HttpRequest.newBuilder(URI.create(base + "gdAddMovie1.jsp")).build(), HttpResponse.BodyHandlers.ofString()).statusCode());
+        browser.send(HttpRequest.newBuilder(URI.create(base + "doLogin1.jsp"))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString("txtUserName=manager&txtPassword=123456")).build(), HttpResponse.BodyHandlers.ofString());
+        String title = "Preserve <movie>";
+        HttpResponse<String> invalid = browser.send(HttpRequest.newBuilder(URI.create(base + "DoAddMovie.jsp"))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString("txnameMovie=" + URLEncoder.encode(title, StandardCharsets.UTF_8) + "&selType=Drama&txtDuration=0")).build(), HttpResponse.BodyHandlers.ofString());
+        assertEquals(200, invalid.statusCode(), invalid.body());
+        assertTrue(invalid.body().contains("Preserve &lt;movie&gt;"), invalid.body());
+        assertTrue(invalid.body().contains("invalid-field"));
+        assertTrue(invalid.body().contains("Thời lượng phải là số nguyên lớn hơn 0."));
+    }
+
+    @Test void retryAndExpiryDoNotRenewOrSellSeats() throws Exception {
+        long deadline = booking.hold(ids, show, "owner");
+        assertEquals(deadline, booking.getHoldDeadline(ids, show, "owner"));
+        assertEquals(0, booking.getHoldDeadline(ids, show, "stranger"));
+        try (Connection c = DAO.openConnection(); Statement st = c.createStatement()) {
+            st.executeUpdate("UPDATE tblTicket1 SET holdExpiresAt=DATE_SUB(NOW(), INTERVAL 1 SECOND) WHERE tblShowTime1id=" + show);
+        }
+        assertEquals(0, booking.getHoldDeadline(ids, show, "owner"));
+        booking.releaseExpired();
+        assertTrue(booking.hold(ids, show, "other") > 0);
     }
 }

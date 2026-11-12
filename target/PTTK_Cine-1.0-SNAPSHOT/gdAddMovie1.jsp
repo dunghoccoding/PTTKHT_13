@@ -1,10 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%
+    java.util.Map<String,String> fieldErrors = (java.util.Map<String,String>) request.getAttribute("fieldErrors");
+    if (fieldErrors == null) fieldErrors = java.util.Collections.emptyMap();
     String error = request.getParameter("error");
 %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+<style>.field-error { color:#b91c1c; } .invalid-field { border:2px solid #b91c1c; }</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineMan - Thêm phim mới</title>
@@ -43,20 +46,26 @@
                 </h4>
 
                 <!-- Form matching image15.png -->
+                <% if (request.getAttribute("saveError") != null) { %>
+                    <p role="alert" class="field-error"><%= request.getAttribute("saveError") %></p>
+                <% } %>
                 <form action="DoAddMovie.jsp" method="post">
                     <div class="form-row">
                         <label class="form-label" for="txnameMovie">Tên phim(*)</label>
-                        <input type="text" id="txnameMovie" name="txnameMovie" class="form-control" placeholder="Ví dụ: Út Lan" required>
+                        <input type="text" id="txnameMovie" name="txnameMovie" class="form-control <%= fieldErrors.containsKey("txnameMovie") ? "invalid-field" : "" %>" aria-invalid="<%= fieldErrors.containsKey("txnameMovie") %>" placeholder="Ví dụ: Út Lan" required value="<%= com.cineman.Html.escape(request.getParameter("txnameMovie")) %>">
+                        <span class="field-error"><%= fieldErrors.getOrDefault("txnameMovie", "") %></span>
                     </div>
 
                     <div class="form-row">
                         <label class="form-label" for="txtDuration">Thời lượng(phút)</label>
-                        <input type="number" id="txtDuration" name="txtDuration" class="form-control" placeholder="Ví dụ: 120" required min="1">
+                        <input type="number" id="txtDuration" name="txtDuration" class="form-control <%= fieldErrors.containsKey("txtDuration") ? "invalid-field" : "" %>" aria-invalid="<%= fieldErrors.containsKey("txtDuration") %>" placeholder="Ví dụ: 120" required min="1" value="<%= com.cineman.Html.escape(request.getParameter("txtDuration")) %>">
+                        <span class="field-error"><%= fieldErrors.getOrDefault("txtDuration", "") %></span>
                     </div>
 
                     <div class="form-row">
                         <label class="form-label" for="selType">Thể loại</label>
-                        <input type="text" id="selType" name="selType" class="form-control" placeholder="Ví dụ: Tâm lý , tình cảm" list="genreOptions" required>
+                        <input type="text" id="selType" name="selType" class="form-control <%= fieldErrors.containsKey("selType") ? "invalid-field" : "" %>" aria-invalid="<%= fieldErrors.containsKey("selType") %>" placeholder="Ví dụ: Tâm lý , tình cảm" list="genreOptions" required value="<%= com.cineman.Html.escape(request.getParameter("selType")) %>">
+                        <span class="field-error"><%= fieldErrors.getOrDefault("selType", "") %></span>
                         <datalist id="genreOptions">
                             <option value="Tâm lý , tình cảm">
                             <option value="Kinh dị">
@@ -70,17 +79,20 @@
 
                     <div class="form-row">
                         <label class="form-label" for="txtDirector">Đạo diễn</label>
-                        <input type="text" id="txtDirector" name="txtDirector" class="form-control" placeholder="Ví dụ: Phan Tiến Dũng">
+                        <input type="text" id="txtDirector" name="txtDirector" class="form-control <%= fieldErrors.containsKey("txtDirector") ? "invalid-field" : "" %>" aria-invalid="<%= fieldErrors.containsKey("txtDirector") %>" placeholder="Ví dụ: Phan Tiến Dũng" value="<%= com.cineman.Html.escape(request.getParameter("txtDirector")) %>">
+                        <span class="field-error"><%= fieldErrors.getOrDefault("txtDirector", "") %></span>
                     </div>
 
                     <div class="form-row">
                         <label class="form-label" for="txtCast">Diễn viên</label>
-                        <input type="text" id="txtCast" name="txtCast" class="form-control" placeholder="Ví dụ: Trần Văn Chú, ...">
+                        <input type="text" id="txtCast" name="txtCast" class="form-control <%= fieldErrors.containsKey("txtCast") ? "invalid-field" : "" %>" aria-invalid="<%= fieldErrors.containsKey("txtCast") %>" placeholder="Ví dụ: Trần Văn Chú, ..." value="<%= com.cineman.Html.escape(request.getParameter("txtCast")) %>">
+                        <span class="field-error"><%= fieldErrors.getOrDefault("txtCast", "") %></span>
                     </div>
 
                     <div class="form-row" style="align-items: flex-start;">
                         <label class="form-label" for="txtDescription" style="padding-top: 8px;">Mô tả</label>
-                        <textarea id="txtDescription" name="txtDescription" class="form-control" rows="3" placeholder="Ví dụ: Là một bộ phim tâm lý tình cảm sâu sắc..."></textarea>
+                        <textarea id="txtDescription" name="txtDescription" class="form-control <%= fieldErrors.containsKey("txtDescription") ? "invalid-field" : "" %>" aria-invalid="<%= fieldErrors.containsKey("txtDescription") %>" rows="3" placeholder="Ví dụ: Là một bộ phim tâm lý tình cảm sâu sắc..."><%= com.cineman.Html.escape(request.getParameter("txtDescription")) %></textarea>
+                        <span class="field-error"><%= fieldErrors.getOrDefault("txtDescription", "") %></span>
                     </div>
 
                     <!-- Prompt and buttons matching image15.png -->

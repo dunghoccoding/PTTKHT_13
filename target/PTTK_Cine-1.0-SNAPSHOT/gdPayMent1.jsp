@@ -16,13 +16,16 @@
     if (showTime == null) { response.sendRedirect("gdHome1.jsp"); return; }
     long holdDeadline;
     try {
-        holdDeadline = new BookingDAO().hold(ticketIds, showTimeId, session.getId());
+        BookingDAO booking = new BookingDAO();
+        holdDeadline = "1".equals(request.getParameter("retry"))
+                ? booking.getHoldDeadline(ticketIds, showTimeId, session.getId())
+                : booking.hold(ticketIds, showTimeId, session.getId());
     } catch (java.sql.SQLException e) {
         application.log("Seat hold failed", e);
         response.sendRedirect("gdSeatSelect1.jsp?showTimeId=" + showTimeId + "&error=system"); return;
     }
     if (holdDeadline == 0) {
-        response.sendRedirect("gdSeatSelect1.jsp?showTimeId=" + showTimeId + "&error=occupied"); return;
+        response.sendRedirect("gdSeatSelect1.jsp?showTimeId=" + showTimeId + "&error=" + ("1".equals(request.getParameter("retry")) ? "expired" : "occupied")); return;
     }
     List<Ticket1> selectedTickets = new ArrayList<>();
     for (int id : ticketIds) {
@@ -36,11 +39,11 @@
     if (currentUser != null) {
         customer = userDAO.getCustomerInfo(currentUser.getId());
     }
+    if (customer == null) { response.sendError(503, "Không thể tải thông tin khách hàng."); return; }
 
-    // Default sample customer if guest
-    String customerName = (customer != null && customer.getFullName() != null) ? customer.getFullName() : "Phan Tiến Dũng";
-    String customerPhone = (customer != null && customer.getPhoneNumbers() != null) ? customer.getPhoneNumbers() : "0963895JQK";
-    String customerEmail = (customer != null && customer.getEmail() != null) ? customer.getEmail() : "ptit@gmail.com";
+    String customerName = com.cineman.Html.escape(customer.getFullName());
+    String customerPhone = com.cineman.Html.escape(customer.getPhoneNumbers());
+    String customerEmail = com.cineman.Html.escape(customer.getEmail());
 
     float totalAmount = 0;
     StringBuilder seatCodes = new StringBuilder();
@@ -82,8 +85,18 @@
                     Thông tin thanh toán
                 </h4>
 
-                <p>Thanh toán mô phỏng. Có thể chọn nhiều ghế, chưa áp dụng ưu đãi thành viên. Thời gian giữ còn lại: <strong id="holdTimer"></strong>.</p>
+                <p>Thanh toán mô phỏng. Có thể chọn nhiều ghế, Giá thanh toán bằng tổng giá vé. Thời gian giữ còn lại: <strong id="holdTimer"></strong>.</p>
+                <% if ("payment_failed".equals(request.getParameter("error"))) { %>
+                    <div class="alert-message alert-danger" role="alert">Thanh toán mô phỏng thất bại. Ghế vẫn được giữ đến hết thời gian hiển thị. Vui lòng thử lại hoặc hủy.</div>
+                <% } else if ("system".equals(request.getParameter("error"))) { %>
+                    <div class="alert-message alert-danger" role="alert">Có lỗi xử lý. Bạn có thể thử lại trong thời gian giữ ghế còn lại.</div>
+                <% } %>
                 <form action="doPayMent.jsp" method="post">
+                    <label for="simulationResult">Kết quả thanh toán mô phỏng</label>
+                    <select name="simulationResult" id="simulationResult" class="form-control">
+                        <option value="success">Thành công</option>
+                        <option value="failure">Thất bại</option>
+                    </select>
                     <input type="hidden" name="ticketIds" value="<%= idsValue %>">
                     <input type="hidden" name="showTimeId" value="<%= showTimeId %>">
                     <input type="hidden" name="totalAmount" id="hiddenTotalAmount" value="<%= totalAmount %>">
@@ -149,7 +162,7 @@
                             Hủy
                         </a>
                         <button type="submit" id="btnPay" class="btn btn-success" style="min-width: 160px; font-size: 16px;">
-                            Thanh Toán
+                            <%= request.getParameter("error") != null ? "Thanh toán lại" : "Thanh toán" %>
                         </button>
                     </div>
                 </form>

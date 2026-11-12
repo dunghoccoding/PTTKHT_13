@@ -58,6 +58,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<% if ("full".equals(request.getParameter("error"))) { %>
+    <p class="alert-message alert-danger" role="alert">Suất chiếu này đã hết chỗ. Vui lòng chọn suất khác.</p>
+<% } %>
 
     <header class="cineman-navbar">
         <a href="gdHome1.jsp" class="cineman-logo">🎬 CineMan</a>

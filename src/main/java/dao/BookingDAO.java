@@ -51,6 +51,32 @@ public class BookingDAO {
         }
     }
 
+    public void releaseExpired() throws SQLException {
+        try (Connection c = DAO.openConnection(); PreparedStatement ps = c.prepareStatement(
+                "UPDATE tblTicket1 SET status = ?, holdOwner = NULL, holdExpiresAt = NULL WHERE status = ? AND holdExpiresAt <= NOW()")) {
+            ps.setString(1, EMPTY);
+            ps.setString(2, HELD);
+            ps.executeUpdate();
+        }
+    }
+
+    /** Inspect a retry without acquiring seats or extending a deadline. */
+    public long getHoldDeadline(List<Integer> ids, int showTimeId, String owner) throws SQLException {
+        if (ids.isEmpty()) return 0;
+        long deadline = Long.MAX_VALUE;
+        try (Connection c = DAO.openConnection(); PreparedStatement ps = c.prepareStatement(
+                "SELECT holdExpiresAt FROM tblTicket1 WHERE id = ? AND tblShowTime1id = ? AND status = ? AND holdOwner = ? AND holdExpiresAt > NOW()")) {
+            for (int id : ids) {
+                ps.setInt(1, id); ps.setInt(2, showTimeId); ps.setString(3, HELD); ps.setString(4, owner);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (!rs.next()) return 0;
+                    deadline = Math.min(deadline, rs.getTimestamp(1).getTime());
+                }
+            }
+        }
+        return deadline;
+    }
+
     /** Returns the DB deadline in epoch milliseconds, or zero when any seat is unavailable. */
     public long hold(List<Integer> ids, int showTimeId, String owner) throws SQLException {
         if (ids.isEmpty()) return 0;

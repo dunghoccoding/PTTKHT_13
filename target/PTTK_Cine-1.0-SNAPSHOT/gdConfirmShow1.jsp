@@ -6,7 +6,9 @@
         response.sendRedirect("gdHome1.jsp");
         return;
     }
-    int showTimeId = Integer.parseInt(showTimeIdStr);
+    int showTimeId;
+    try { showTimeId = Integer.parseInt(showTimeIdStr); }
+    catch (NumberFormatException e) { response.sendRedirect("gdHome1.jsp"); return; }
 
     ShowTime1DAO showTimeDAO = new ShowTime1DAO();
     Cinema1DAO cinemaDAO = new Cinema1DAO();
@@ -15,6 +17,13 @@
     ShowTime1 showTime = showTimeDAO.getShowTimeInfo(showTimeId);
     if (showTime == null) {
         response.sendRedirect("gdHome1.jsp");
+        return;
+    }
+
+    new dao.BookingDAO();
+    new dao.Ticket1DAO().getSeatMap(showTimeId);
+    if (!showTimeDAO.checkAvailable(showTimeId)) {
+        response.sendRedirect("gdShowTime1.jsp?movieId=" + showTime.getMovie().getId() + "&error=full");
         return;
     }
 
