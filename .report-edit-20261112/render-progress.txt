@@ -1,4 +1,0 @@
-Word started
-Opening document
-Document opened
-Exporting PDF directly
